@@ -63,9 +63,12 @@
                                         </td>
 
 
+                                        @if ($item->model->sale_price > 0 &&  $sale->status==1 && $sale->sale_date > Carbon\Carbon::now())
+                                         <td class="product-price">${{$item->model->sale_price}}</td>
+                                        @else
+                                         <td class="product-price">${{$item->model->regular_price}}</td>
+                                        @endif
 
-
-                                        <td class="product-price">${{$item->model->regular_price}}</td>
                                         <td class="product_quantity"><label>Quantity</label> 
                                             <a  href="#" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')"><i class="fa fa-minus-square-o"></i></a>
                                             <input min="1" max="100" value="{{$item->qty}}" type="number">

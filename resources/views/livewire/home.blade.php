@@ -144,6 +144,94 @@
 </div>
 <!-- End Banner Section -->
 
+@if ($sproducts->count() > 0 &&  $sale->status==1 && $sale->sale_date > Carbon\Carbon::now())
+<div class="product-default-slider-section section-top-gap-100 section-fluid">
+    <!-- Start Section Content Text Area -->
+    <div class="section-title-wrapper" data-aos="fade-up" data-aos-delay="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-content-gap">
+                        <div class="secton-content">
+                            <h3 class="section-title">ON SALE</h3>
+                            <div class="wrap-countdown mercado-countdown" data-expire="{{Carbon\Carbon::parse($sale->sale_date)->format('Y/m/d h:m:s')}}"></div>
+				            <div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container " data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Section Content Text Area -->
+    <div class="product-wrapper" data-aos="fade-up" data-aos-delay="200">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-slider-default-1row default-slider-nav-arrow">
+                        <!-- Slider main container -->
+                        <div class="swiper-container product-default-slider-4grid-1row">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                                <!-- End Product Default Single Item -->
+                                @foreach ($sproducts as $sproduct)
+                                <div class="product-default-single-item product-color--pink swiper-slide">
+                                    <div class="image-box">
+                                        <a href="{{route('product.details',['slug'=>$sproduct->slug])}}" class="image-link">
+                                            <img src="{{asset('assets/images/product/default/home-1')}}/{{$sproduct->image}}" alt="{{$sproduct->name}}">
+                                            <img src="{{asset('assets/images/product/default/home-1/default-4.jpg')}}" alt="{{$sproduct->name}}">
+                                        </a>
+                                        <div class="tag">
+                                            <span>sale</span>
+                                        </div>
+                                        <div class="action-link">
+                                            <div class="action-link-left">
+                                                <a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#modalAddcart" wire:click.prevent="store({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->sale_price}})">Add to Cart</a>
+                                            </div>
+                                            <div class="action-link-right">
+                                                <a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#modalQuickview"><i
+                                                        class="icon-magnifier"></i></a>
+                                                <a href="#" wire:click.prevent="addToWishlist({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->sale_price}})"><i class="icon-heart"></i></a>
+                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="content-left">
+                                            <h6 class="title"><a href="{{route('product.details',['slug'=>$sproduct->slug])}}">{{$sproduct->name}}</a></h6>
+                                            <ul class="review-star">
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="fill"><i class="ion-android-star"></i></li>
+                                                <li class="empty"><i class="ion-android-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content-right">
+                                            <span class="price"><del>${{$sproduct->regular_price}}</del> ${{$sproduct->sale_price}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                @endforeach
+                               
+                               
+                            </div>
+                        </div>
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+@endif
+
+
+
 <!-- Start Product Default Slider Section -->
 <div class="product-default-slider-section section-top-gap-100 section-fluid">
     <!-- Start Section Content Text Area -->
@@ -153,7 +241,7 @@
                 <div class="col-12">
                     <div class="section-content-gap">
                         <div class="secton-content">
-                            <h3 class="section-title">the New arrivals</h3>
+                            <h3 class="section-title">LATEST PRODUCTS</h3>
                             <p>Preorder now to receive exclusive deals & gifts</p>
                         </div>
                     </div>
@@ -178,9 +266,7 @@
                                         <img src="{{asset('assets/images/product/default/home-1')}}/{{$lproduct->image}}" alt="">
                                         <img src="{{asset('assets/images/product/default/home-1/default-1.jpg')}}" alt="">
                                     </a>
-                                    <div class="tag">
-                                        <span>sale</span>
-                                    </div>
+                                   
                                     <div class="action-link">
                                         <div class="action-link-left">
                                             <a href="#" data-bs-toggle="modal"
@@ -190,14 +276,14 @@
                                             <a href="#" data-bs-toggle="modal"
                                                 data-bs-target="#modalQuickview"><i
                                                     class="icon-magnifier"></i></a>
-                                            <a href="{{route('product.details',['slug'=>$lproduct->slug])}}" wire:click.prevent="addToWishlist({{$lproduct->id}},'{{$lproduct->name}}',{{$lproduct->regular_price}})"><i class="icon-heart"></i></a>
+                                            <a href="#" wire:click.prevent="addToWishlist({{$lproduct->id}},'{{$lproduct->name}}',{{$lproduct->regular_price}})"><i class="icon-heart"></i></a>
                                             <a href="compare.html"><i class="icon-shuffle"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="content">
                                     <div class="content-left">
-                                        <h6 class="title"><a href="#">{{$lproduct->name}}</a></h6>
+                                        <h6 class="title"><a href="{{route('product.details',['slug'=>$lproduct->slug])}}">{{$lproduct->name}}</a></h6>
                                        
                                         <style>
                                             .color-gray{

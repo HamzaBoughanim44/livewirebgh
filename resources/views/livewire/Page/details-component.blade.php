@@ -108,7 +108,12 @@
                             </ul>
                             <a href="#" class="customer-review ml-2">({{$product->orderItems->where('rstatus',1)->count()}} review )</a>
                         </div>
+                        @if ($product->sale_price > 0 &&  $sale->status==1 && $sale->sale_date > Carbon\Carbon::now())
+                        <div class="price">${{$product->sale_price}}</div>
+                        @else
                         <div class="price">${{$product->regular_price}}</div>
+                        @endif
+                        
                         <p>{{$product->short_description}}</p>
                     </div> <!-- End  Product Details Text Area-->
                     <!-- Start Product Variable Area -->
@@ -134,10 +139,16 @@
                        
 
                         <div class="d-flex align-items-center ">
-                           
+                          @if ($product->sale_price > 0 &&  $sale->status==1 && $sale->sale_date > Carbon\Carbon::now())
                             <div class="product-add-to-cart-btn">
-                                <a href="" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})"  data-bs-toggle="modal" data-bs-target="#modalAddcart">+ Add To Cart</a>
-                            </div>
+                                <a href="" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->sale_price}})"  data-bs-toggle="modal" data-bs-target="#modalAddcart">+ Add To Cart</a>
+                           </div> 
+                           @else
+                           <div class="product-add-to-cart-btn">
+                               <a href="" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})"  data-bs-toggle="modal" data-bs-target="#modalAddcart">+ Add To Cart</a>
+                           </div>
+                           @endif
+                            
                         </div>
                         <!-- Start  Product Details Meta Area-->
                         <div class="product-details-meta mb-20">

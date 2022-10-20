@@ -18,6 +18,7 @@ use App\Http\Livewire\Admin\OrderDetails\OrderDetailsComponent;
 use App\Http\Livewire\Admin\Products\AddProducts;
 use App\Http\Livewire\Admin\Products\EditProducts;
 use App\Http\Livewire\Admin\Products\ProductsComponent;
+use App\Http\Livewire\Admin\Sale\SaleComponent;
 use App\Http\Livewire\Admin\Setting\SettingComponent;
 use App\Http\Livewire\Admin\Slider\AddHomeSlider;
 use App\Http\Livewire\Admin\Slider\EditHomeSlider;
@@ -110,6 +111,9 @@ Route::get('/admin/attribut', AttributesComponent::class)->name('admin.attribut'
 Route::get('/admin/attribut/add',AddAttributesComponent::class)->name('admin.addattribut');
 Route::get('/admin/attribut/edit/{attribut_id}',EditAttributesComponent::class)->name('admin.editattribut');
 #########################################################################################################
+Route::get('/admin/sale', SaleComponent::class)->name('admin.sale');
+#########################################################################################################
+
 
 
 

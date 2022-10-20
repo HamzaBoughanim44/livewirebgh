@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\Page;
 
-use Livewire\Component;
 use Cart;
+use App\Models\Sale;
+use Livewire\Component;
 
 class WishlistComponent extends Component
 {
@@ -30,6 +31,7 @@ class WishlistComponent extends Component
     
     public function render()
     {
-        return view('livewire.page.wishlist-component')->layout('layouts.site');
+        $sale = Sale::find(1);
+        return view('livewire.page.wishlist-component',['sale'=>$sale])->layout('layouts.site');
     }
 }

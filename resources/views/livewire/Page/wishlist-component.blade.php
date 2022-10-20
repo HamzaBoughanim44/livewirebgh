@@ -56,7 +56,12 @@
                                                         alt=""></a></td>
                                             <td class="product_name">
                                                 <a href="{{route('product.details',['slug'=>$item->model->slug])}}">{{$item->model->name}}</a></td>
-                                            <td class="product-price">${{$item->model->regular_price}}</td>
+                                            
+                                            @if ($item->model->sale_price > 0 &&  $sale->status==1 && $sale->sale_date > Carbon\Carbon::now())
+                                             <td class="product-price">${{$item->model->sale_price}}</td>
+                                            @else
+                                             <td class="product-price">${{$item->model->regular_price}}</td>
+                                            @endif    
                                             <td class="product_stock">{{$item->model->stock_status}}</td>
                                             <td class="product_addcart"><a href="#" class="btn btn-md btn-golden"
                                                     data-bs-toggle="modal" data-bs-target="#modalAddcart" wire:click.prevent="movetocart('{{$item->rowId}}')">Add To

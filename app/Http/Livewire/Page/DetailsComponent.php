@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Page;
 
 use Cart;
 use App\Models\Product;
+use App\Models\Sale;
 use App\Models\Setting;
 use Livewire\Component;
 
@@ -44,11 +45,13 @@ class DetailsComponent extends Component
         $product = Product::where('slug',$this->slug)->first();
         $related_products = Product::where('category_id',$product->category_id)->inRandomOrder()->limit(8)->get();
 
+        $sale = Sale::find(1);
         $setting = Setting::find(1);
         return view('livewire.page.details-component',[
             'product'=> $product ,
             'related_products'=>$related_products,
-            'setting' =>$setting
+            'setting' =>$setting,
+            'sale'=>$sale
             
             ])->layout('layouts.site');
     }

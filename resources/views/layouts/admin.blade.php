@@ -305,7 +305,7 @@
             </li>
 
             <li class="nav-item"> <a class="nav-link" href="{{route('admin.order')}}"> Orders</a></li>
-
+            <li class="nav-item"> <a class="nav-link" href="{{route('admin.sale')}}"> Sale Date</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{route('admin.contact')}}">Contacts</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{route('admin.setting')}}">Setting</a></li>
             
